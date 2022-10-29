@@ -1,0 +1,10 @@
+# name<space>url
+# ref: https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Extensions
+# aesthetic-gradients https://github.com/AUTOMATIC1111/stable-diffusion-webui-aesthetic-gradients
+# wildcards https://github.com/AUTOMATIC1111/stable-diffusion-webui-wildcards
+# images-browser https://github.com/yfszzx/stable-diffusion-webui-images-browser
+# inspiration https://github.com/yfszzx/stable-diffusion-webui-inspiration
+# deforum https://github.com/deforum-art/deforum-for-automatic1111-webui
+# artists-to-study https://github.com/camenduru/stable-diffusion-webui-artists-to-study
+# aesthetic-image-scorer https://github.com/tsngo/stable-diffusion-webui-aesthetic-image-scorer
+# dataset-tag-editor https://github.com/toshiaki1729/stable-diffusion-webui-dataset-tag-editor

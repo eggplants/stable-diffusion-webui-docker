@@ -36,12 +36,22 @@ ENV DEBIAN_FRONTEND=noninteractive PIP_PREFER_BINARY=1 PIP_NO_CACHE_DIR=1
 
 RUN pip install torch==1.12.1+cu113 torchvision==0.13.1+cu113 --extra-index-url https://download.pytorch.org/whl/cu113
 
-RUN apt-get update && apt install fonts-dejavu-core rsync git -y && apt-get clean
+RUN apt-get update && apt install fonts-dejavu-core jq moreutils rsync git -y && apt-get clean
 
 
 RUN <<EOF
 git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git
 cd stable-diffusion-webui
+
+if [[ -f '/docker/extensions.txt' ]]; then
+  grep -vE '#\s*' /docker/extensions.txt | sed -r '/^\s*$/d' | while read -r name url; do
+    echo "installing extension: ${name}"
+    git clone "$url" "extensions/${name}"
+  done
+else
+  echo "skipped installing extensions"
+fi
+
 git reset --hard 1eb588cbf19924333b88beaa1ac0041904966640
 pip install -r requirements_versions.txt
 EOF
@@ -53,10 +63,6 @@ ENV ROOT=/stable-diffusion-webui \
 COPY --from=download /git/ ${ROOT}
 RUN mkdir ${ROOT}/interrogate && cp ${ROOT}/repositories/clip-interrogator/data/* ${ROOT}/interrogate
 RUN pip install --prefer-binary --no-cache-dir -r ${ROOT}/repositories/CodeFormer/requirements.txt
-
-# TODO: move to top
-RUN apt-get install jq moreutils -y
-
 
 # Note: don't update the sha of previous versions because the install will take forever
 # instead, update the repo state in a later step

@@ -27,6 +27,7 @@ MOUNTS["${ROOT}/models/LDSR"]="/data/LDSR"
 MOUNTS["${ROOT}/models/hypernetworks"]="/data/Hypernetworks"
 
 MOUNTS["${ROOT}/embeddings"]="/data/embeddings"
+MOUNTS["${ROOT}/extensions"]="/data/extensions"
 MOUNTS["${ROOT}/config.json"]="/data/config/auto/config.json"
 MOUNTS["${ROOT}/ui-config.json"]="/data/config/auto/ui-config.json"
 
